@@ -26,7 +26,7 @@
          (break-line next-indent)
          (->> dict
               (sort-by first)
-              (map (fn [[k v]] (str (pr-str k) " " (write-edn v (inc2 next-indent)))))
+              (map (fn [[k v]] (str (pr-str k) " " (write-edn v next-indent))))
               (string/join (break-line next-indent)))
          (break-line indent)
          "}"))
@@ -35,28 +35,33 @@
             next-indent (inc2 indent)]
         (str
          "{"
+         (if (not (empty? simple-fields)) (break-line next-indent))
          (->> simple-fields
               (map (fn [[k v]] (str (pr-str k) " " (pr-str v))))
-              (string/join " "))
-         (break-line (inc2 next-indent))
+              (string/join ", "))
+         (break-line next-indent)
          (->> complicated-fields
-              (map (fn [[k v]] (str (pr-str k) " " (write-edn v (inc2 next-indent)))))
-              (string/join (break-line (inc2 next-indent))))
+              (map (fn [[k v]] (str (pr-str k) " " (write-edn v next-indent))))
+              (string/join (break-line next-indent)))
          (break-line indent)
          "}")))))
 
 (defn write-vector [xs indent]
   (str
    "["
+   (break-line (inc2 indent))
    (let [new-indent (inc2 indent)]
      (->> xs (map (fn [x] (write-edn x new-indent))) (string/join (break-line new-indent))))
+   (break-line indent)
    "]"))
 
 (defn write-set [xs indent]
   (str
    "#{"
+   (break-line (inc2 indent))
    (let [new-indent (inc2 indent)]
      (->> xs (map (fn [x] (write-edn x new-indent))) (string/join (break-line new-indent))))
+   (break-line indent)
    "}"))
 
 (defn write-edn
