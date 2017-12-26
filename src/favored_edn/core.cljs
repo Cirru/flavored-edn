@@ -47,22 +47,26 @@
          "}")))))
 
 (defn write-vector [xs indent]
-  (str
-   "["
-   (break-line (inc2 indent))
-   (let [new-indent (inc2 indent)]
-     (->> xs (map (fn [x] (write-edn x new-indent))) (string/join (break-line new-indent))))
-   (break-line indent)
-   "]"))
+  (if (or (empty? xs) (every? literal? xs))
+    (pr-str xs)
+    (str
+     "["
+     (break-line (inc2 indent))
+     (let [new-indent (inc2 indent)]
+       (->> xs (map (fn [x] (write-edn x new-indent))) (string/join (break-line new-indent))))
+     (break-line indent)
+     "]")))
 
 (defn write-set [xs indent]
-  (str
-   "#{"
-   (break-line (inc2 indent))
-   (let [new-indent (inc2 indent)]
-     (->> xs (map (fn [x] (write-edn x new-indent))) (string/join (break-line new-indent))))
-   (break-line indent)
-   "}"))
+  (if (or (empty? xs) (every? literal? xs))
+    (pr-str xs)
+    (str
+     "#{"
+     (break-line (inc2 indent))
+     (let [new-indent (inc2 indent)]
+       (->> xs (map (fn [x] (write-edn x new-indent))) (string/join (break-line new-indent))))
+     (break-line indent)
+     "}")))
 
 (defn write-edn
   ([data] (write-edn data 0))

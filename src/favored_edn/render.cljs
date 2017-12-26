@@ -8,8 +8,8 @@
             [cljs.reader :refer [read-string]]))
 
 (def base-info
-  {:title "CoWorkflow",
-   :icon "http://cdn.tiye.me/logo/mvc-works.png",
+  {:title "Favored EDN",
+   :icon "http://cdn.tiye.me/logo/cirru.png",
    :ssr nil,
    :inline-html nil,
    :inline-styles [(slurp "./entry/main.css")]})
@@ -28,7 +28,7 @@
   (let [reel (-> reel-schema/reel (assoc :base schema/store) (assoc :store schema/store))
         html-content (make-string (comp-container reel))
         assets (read-string (slurp "dist/assets.edn"))
-        cdn (if preview? "" "http://cdn.tiye.me/coworkflow/")
+        cdn (if preview? "" "http://cdn.tiye.me/favored-edn/")
         prefix-cdn (fn [x] (str cdn x))]
     (make-page
      html-content

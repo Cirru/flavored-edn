@@ -2,9 +2,19 @@
 Favored EDN formatter for Cirru
 ----
 
+Example http://repo.cirru.org/favored-edn/
+
 ### Usage
 
-WIP
+[![Clojars Project](https://img.shields.io/clojars/v/cirru/favored-edn.svg)](https://clojars.org/cirru/favored-edn)
+
+```edn
+[cirru/favored-edn "0.1.0"]
+```
+
+```clojure
+(favored-edn.core/write-edn data) ; returns a string of formatted EDN
+```
 
 ### Workflow
 
