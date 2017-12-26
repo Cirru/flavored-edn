@@ -19,7 +19,7 @@
                     :devtools {:after-load favored-edn.main/reload!
                                :preloads [shadow.cljs.devtools.client.hud]
                                :http-root "target"
-                               :http-port 8080}
+                               :http-port 7000}
                     :compiler-options {:infer-externs :auto}
                     :release {:output-dir "dist/"
                               :module-hash-names 8
