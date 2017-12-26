@@ -3,18 +3,40 @@
 
 (declare write-edn)
 
+(declare write-map)
+
 (declare write-set)
 
 (declare write-vector)
 
-(declare write-map)
-
 (defn break-line [x] (string/join (str "\n" (string/join "" (repeat x " ")))))
+
+(defn inc2 [x] (+ x 1))
 
 (defn literal? [x]
   (or (number? x) (string? x) (keyword? x) (symbol? x) (nil? x) (boolean? x)))
 
-(defn inc2 [x] (+ x 1))
+(defn write-vector [xs indent]
+  (if (or (empty? xs) (every? literal? xs))
+    (pr-str xs)
+    (str
+     "["
+     (break-line (inc2 indent))
+     (let [new-indent (inc2 indent)]
+       (->> xs (map (fn [x] (write-edn x new-indent))) (string/join (break-line new-indent))))
+     (break-line indent)
+     "]")))
+
+(defn write-set [xs indent]
+  (if (or (empty? xs) (every? literal? xs))
+    (pr-str xs)
+    (str
+     "#{"
+     (break-line (inc2 indent))
+     (let [new-indent (inc2 indent)]
+       (->> xs (map (fn [x] (write-edn x new-indent))) (string/join (break-line new-indent))))
+     (break-line indent)
+     "}")))
 
 (defn write-map [dict indent]
   (if (or (empty? dict) (every? literal? (vals dict)))
@@ -45,28 +67,6 @@
               (string/join (break-line next-indent)))
          (break-line indent)
          "}")))))
-
-(defn write-vector [xs indent]
-  (if (or (empty? xs) (every? literal? xs))
-    (pr-str xs)
-    (str
-     "["
-     (break-line (inc2 indent))
-     (let [new-indent (inc2 indent)]
-       (->> xs (map (fn [x] (write-edn x new-indent))) (string/join (break-line new-indent))))
-     (break-line indent)
-     "]")))
-
-(defn write-set [xs indent]
-  (if (or (empty? xs) (every? literal? xs))
-    (pr-str xs)
-    (str
-     "#{"
-     (break-line (inc2 indent))
-     (let [new-indent (inc2 indent)]
-       (->> xs (map (fn [x] (write-edn x new-indent))) (string/join (break-line new-indent))))
-     (break-line indent)
-     "}")))
 
 (defn write-edn
   ([data] (write-edn data 0))

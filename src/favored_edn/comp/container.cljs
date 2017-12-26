@@ -9,6 +9,8 @@
             [cljs.reader :refer [read-string]]
             [favored-edn.core :refer [write-edn]]))
 
+(defn program [text] (write-edn (read-string text)))
+
 (def style-code
   (merge
    ui/textarea
@@ -17,8 +19,6 @@
     :font-size 12,
     :font-family "Source Code Pro, Menlo, monospace",
     :flex 1}))
-
-(defn program [text] (write-edn (read-string text)))
 
 (defcomp
  comp-container
