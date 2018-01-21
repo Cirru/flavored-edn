@@ -1,7 +1,7 @@
 
 (ns favored-edn.comp.container
   (:require [hsl.core :refer [hsl]]
-            [respo-ui.style :as ui]
+            [respo-ui.core :as ui]
             [respo.macros :refer [defcomp cursor-> <> div button textarea span]]
             [verbosely.core :refer [verbosely!]]
             [respo.comp.space :refer [=<]]

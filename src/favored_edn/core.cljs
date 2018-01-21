@@ -9,6 +9,8 @@
 
 (declare write-vector)
 
+(declare write-list)
+
 (defn break-line [x] (string/join (str "\n" (string/join "" (repeat x " ")))))
 
 (defn inc2 [x] (+ x 1))
@@ -68,6 +70,17 @@
          (break-line indent)
          "}")))))
 
+(defn write-list [xs indent]
+  (if (or (empty? xs) (every? literal? xs))
+    (pr-str xs)
+    (str
+     "("
+     (break-line (inc2 indent))
+     (let [new-indent (inc2 indent)]
+       (->> xs (map (fn [x] (write-edn x new-indent))) (string/join (break-line new-indent))))
+     (break-line indent)
+     ")")))
+
 (defn write-edn
   ([data] (write-edn data 0))
   ([data indent]
@@ -75,6 +88,7 @@
      (map? data) (write-map data indent)
      (vector? data) (write-vector data indent)
      (set? data) (write-set data indent)
+     (list? data) (write-list data indent)
      (number? data) (pr-str data)
      (string? data) (pr-str data)
      (boolean? data) (pr-str data)
