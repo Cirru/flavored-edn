@@ -2,12 +2,12 @@
 (ns favored-edn.comp.container
   (:require [hsl.core :refer [hsl]]
             [respo-ui.core :as ui]
-            [respo.macros :refer [defcomp cursor-> <> div button textarea span]]
-            [verbosely.core :refer [verbosely!]]
+            [respo.core :refer [defcomp cursor-> <> div button textarea span]]
             [respo.comp.space :refer [=<]]
             [reel.comp.reel :refer [comp-reel]]
             [cljs.reader :refer [read-string]]
-            [favored-edn.core :refer [write-edn]]))
+            [favored-edn.core :refer [write-edn]]
+            [favored-edn.config :refer [dev?]]))
 
 (defn program [text] (write-edn (read-string text)))
 
@@ -25,7 +25,7 @@
  (reel)
  (let [store (:store reel), states (:states store)]
    (div
-    {:style (merge ui/global ui/row)}
+    {:style (merge ui/global ui/fullscreen ui/row)}
     (textarea
      {:value (:content store),
       :placeholder "Content",
@@ -46,4 +46,4 @@
       {:style ui/button,
        :inner-text (str "run"),
        :on {:click (fn [e d! m!] (d! :result (program (:content store))))}}))
-    (cursor-> :reel comp-reel states reel {}))))
+    (when dev? (cursor-> :reel comp-reel states reel {})))))

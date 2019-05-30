@@ -18,7 +18,7 @@ Example http://repo.cirru.org/favored-edn/
 
 ### Workflow
 
-Workflow https://github.com/mvc-works/coworkflow
+Workflow https://github.com/mvc-works/calcit-workflow
 
 ### License
 
