@@ -18,8 +18,6 @@
   {:dev-ui "http://localhost:8100/main-fonts.css",
    :release-ui "http://cdn.tiye.me/favored-fonts/main-fonts.css",
    :cdn-url "http://cdn.tiye.me/favored-edn/",
-   :cdn-folder "tiye.me:cdn/favored-edn",
    :title "Favored EDN",
    :icon "http://cdn.tiye.me/logo/cirru.png",
-   :storage-key "favored-edn",
-   :upload-folder "tiye.me:repo/Cirru/favored-edn/"})
+   :storage-key "favored-edn"})

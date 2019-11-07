@@ -34,8 +34,4 @@
           :page {:target :node-script
                  :output-to "target/page.js"
                  :main favored-edn.page/main!
-                 :devtools {:after-load favored-edn.page/main!}}
-          :upload {:target :node-script
-                   :output-to "target/upload.js"
-                   :main favored-edn.upload/main!
-                   :devtools {:after-load favored-edn.upload/main!}}}}
+                 :devtools {:after-load favored-edn.page/main!}}}}
