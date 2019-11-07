@@ -23,7 +23,11 @@
   (let [code (slurp "examples/mixed.edn")] (is (= code (write-edn (read-string code))))))
  (testing
   "test a map"
-  (let [code (slurp "examples/map.edn")] (is (= code (write-edn (read-string code)))))))
+  (let [code (slurp "examples/map.edn")] (is (= code (write-edn (read-string code))))))
+ (testing
+  "test mixed data with indent 2"
+  (let [code (slurp "examples/mixed-two.edn")]
+    (is (= code (write-edn (read-string code) {:indent 2}))))))
 
 (deftest
  test-coir
