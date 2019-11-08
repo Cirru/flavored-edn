@@ -9,7 +9,7 @@
             [favored-edn.core :refer [write-edn]]
             [favored-edn.config :refer [dev?]]))
 
-(defn program [text] (write-edn (read-string text)))
+(defn program [text] (write-edn (read-string text) {:indent 2}))
 
 (def style-code
   (merge

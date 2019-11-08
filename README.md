@@ -14,6 +14,8 @@ Example http://repo.cirru.org/favored-edn/
 
 ```clojure
 (favored-edn.core/write-edn data) ; returns a string of formatted EDN
+
+(favored-edn.core/write-edn data {:indent 2}) ; format with indentation 2
 ```
 
 ### Workflow
