@@ -9,7 +9,7 @@ Example http://repo.cirru.org/favored-edn/
 [![Clojars Project](https://img.shields.io/clojars/v/cirru/favored-edn.svg)](https://clojars.org/cirru/favored-edn)
 
 ```edn
-[cirru/favored-edn "0.1.1"]
+[cirru/favored-edn "0.1.2"]
 ```
 
 ```clojure

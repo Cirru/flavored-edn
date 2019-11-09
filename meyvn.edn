@@ -1,7 +1,7 @@
 
 {:pom {:group-id "cirru",
        :artifact-id "favored-edn",
-       :version "0.1.2-a1",
+       :version "0.1.2",
        :name "EDN formatter in Cirru's favor"}
  :packaging {:jar {:enabled true
                    :remote-repository {:id "clojars"
