@@ -124,7 +124,7 @@
                         :data $ {}
                           |T $ {} (:type :expr) (:by |root) (:at 1516527385065) (:id |rJWXJkfSM)
                             :data $ {}
-                              |T $ {} (:type :leaf) (:by |root) (:at 1516527385996) (:text |list?) (:id |SJWx7y1zBf)
+                              |T $ {} (:type :leaf) (:by |rJG4IHzWf) (:at 1584246795966) (:text |seq?) (:id |SJWx7y1zBf)
                               |j $ {} (:type :leaf) (:by |root) (:at 1516527386886) (:text |data) (:id |B1GfXkkfSM)
                           |j $ {} (:type :expr) (:by |root) (:at 1516527388893) (:id |r1BmyyfSM)
                             :data $ {}
