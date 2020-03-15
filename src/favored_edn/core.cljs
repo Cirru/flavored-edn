@@ -93,7 +93,7 @@
      (map? data) (write-map data indent options)
      (vector? data) (write-vector data indent options)
      (set? data) (write-set data indent options)
-     (list? data) (write-list data indent options)
+     (seq? data) (write-list data indent options)
      (number? data) (pr-str data)
      (string? data) (pr-str data)
      (boolean? data) (pr-str data)
