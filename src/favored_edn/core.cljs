@@ -11,7 +11,7 @@
 
 (declare write-vector)
 
-(defn break-line [x] (string/join (str "\n" (string/join "" (repeat x " ")))))
+(defn break-line [x] (str "\n" (string/join "" (repeat x " "))))
 
 (defn literal? [x]
   (or (number? x) (string? x) (keyword? x) (symbol? x) (nil? x) (boolean? x)))
@@ -19,15 +19,27 @@
 (defn write-vector [xs indent options]
   (if (or (empty? xs) (every? literal? xs))
     (pr-str xs)
-    (str
-     "["
-     (break-line (+ indent (:indent options)))
-     (let [new-indent (+ indent (:indent options))]
-       (->> xs
-            (map (fn [x] (write-edn x new-indent options)))
-            (string/join (break-line new-indent))))
-     (break-line indent)
-     "]")))
+    (let [new-indent (+ indent (:indent options))]
+      (loop [acc "[", prev :space, body xs]
+        (cond
+          (empty? body) (str acc (if (= prev :block) " " "") "]")
+          (literal? (first body))
+            (recur
+             (str
+              acc
+              (case prev
+                :block (break-line new-indent)
+                :literal " "
+                :space ""
+                (throw (js/Error. "Unknown state")))
+              (pr-str (first body)))
+             :literal
+             (rest body))
+          :else
+            (recur
+             (str acc (break-line new-indent) (write-edn (first body) new-indent options))
+             :block
+             (rest body)))))))
 
 (defn write-set [xs indent options]
   (if (or (empty? xs) (every? literal? xs))
@@ -73,17 +85,27 @@
          "}")))))
 
 (defn write-list [xs indent options]
-  (if (or (empty? xs) (every? literal? xs))
-    (pr-str xs)
-    (str
-     "("
-     (break-line (+ indent (:indent options)))
-     (let [new-indent (+ indent (:indent options))]
-       (->> xs
-            (map (fn [x] (write-edn x new-indent options)))
-            (string/join (break-line new-indent))))
-     (break-line indent)
-     ")")))
+  (let [new-indent (+ indent (:indent options))]
+    (loop [acc "(", prev :space, body xs]
+      (cond
+        (empty? body) (str acc (if (= prev :block) " " "") ")")
+        (literal? (first body))
+          (recur
+           (str
+            acc
+            (case prev
+              :block (break-line new-indent)
+              :literal " "
+              :space ""
+              (throw (js/Error. "Unknown state")))
+            (pr-str (first body)))
+           :literal
+           (rest body))
+        :else
+          (recur
+           (str acc (break-line new-indent) (write-edn (first body) new-indent options))
+           :block
+           (rest body))))))
 
 (defn write-edn
   ([data] (write-edn data 0 {:indent 1}))
