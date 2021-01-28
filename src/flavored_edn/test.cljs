@@ -1,9 +1,9 @@
 
-(ns favored-edn.test
+(ns flavored-edn.test
   (:require [cljs.test :refer [deftest run-tests is testing]]
             ["fs" :as fs]
             [cljs.reader :refer [read-string]]
-            [favored-edn.core :refer [write-edn]]))
+            [flavored-edn.core :refer [write-edn]]))
 
 (defn slurp [x] (fs/readFileSync x "utf8"))
 

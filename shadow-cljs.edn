@@ -3,13 +3,13 @@
   :cache-blockers #{cumulo-util.build}
   :dependencies [
     [mvc-works/hsl "0.1.2"]
-    [mvc-works/shell-page "0.1.10"]
-    [respo/ui "0.3.14"]
-    [respo/reel "0.3.5"]
-    [respo/value "0.2.5"]
-    [fipp "0.6.22"]
-    [respo "0.11.5"]
-    [cumulo/util "0.1.10"]
+    [mvc-works/shell-page "0.1.15"]
+    [respo/ui "0.3.16"]
+    [respo/reel "0.4.2"]
+    [respo/value "0.3.0"]
+    [fipp "0.6.23"]
+    [respo "0.13.4"]
+    [cumulo/util "0.1.12"]
     [org.clojure/core.incubator "0.1.4"]
   ]
   :open-file-command [
@@ -21,9 +21,9 @@
     :client {
       :target :browser, :output-dir "target/", :asset-path "./"
       :modules {
-        :client {:init-fn favored-edn.main/main!}
+        :client {:init-fn flavored-edn.main/main!}
       }
-      :devtools {:after-load favored-edn.main/reload!}
+      :devtools {:after-load flavored-edn.main/reload!}
       :compiler-options {:infer-externs :auto}
       :release {
         :output-dir "dist/", :module-hash-names 8
@@ -31,16 +31,16 @@
       }
     }
     :test {
-      :target :node-script, :output-to "target/test.js", :main favored-edn.test/main!
-      :devtools {:after-load favored-edn.test/reload!}
+      :target :node-script, :output-to "target/test.js", :main flavored-edn.test/main!
+      :devtools {:after-load flavored-edn.test/reload!}
     }
     :compare {
-      :target :node-script, :output-to "target/compare.js", :main favored-edn.compare/main!
-      :devtools {:after-load favored-edn.compare/reload!}
+      :target :node-script, :output-to "target/compare.js", :main flavored-edn.compare/main!
+      :devtools {:after-load flavored-edn.compare/reload!}
     }
     :page {
-      :target :node-script, :output-to "target/page.js", :main favored-edn.page/main!
-      :devtools {:after-load favored-edn.page/main!}
+      :target :node-script, :output-to "target/page.js", :main flavored-edn.page/main!
+      :devtools {:after-load flavored-edn.page/main!}
     }
   }
 }

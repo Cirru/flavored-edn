@@ -1,13 +1,13 @@
 
-(ns favored-edn.main
+(ns flavored-edn.main
   (:require [respo.core :refer [render! clear-cache! realize-ssr!]]
-            [favored-edn.comp.container :refer [comp-container]]
-            [favored-edn.updater :refer [updater]]
-            [favored-edn.schema :as schema]
+            [flavored-edn.comp.container :refer [comp-container]]
+            [flavored-edn.updater :refer [updater]]
+            [flavored-edn.schema :as schema]
             [reel.util :refer [listen-devtools!]]
             [reel.core :refer [reel-updater refresh-reel]]
             [reel.schema :as reel-schema]
-            [favored-edn.config :as config]))
+            [flavored-edn.config :as config]))
 
 (defonce *reel
   (atom (-> reel-schema/reel (assoc :base schema/store) (assoc :store schema/store))))

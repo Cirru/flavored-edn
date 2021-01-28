@@ -1,5 +1,5 @@
 
-(ns favored-edn.config )
+(ns flavored-edn.config )
 
 (def cdn?
   (cond
@@ -17,7 +17,7 @@
 (def site
   {:dev-ui "http://localhost:8100/main-fonts.css",
    :release-ui "http://cdn.tiye.me/favored-fonts/main-fonts.css",
-   :cdn-url "http://cdn.tiye.me/favored-edn/",
+   :cdn-url "http://cdn.tiye.me/flavored-edn/",
    :title "Favored EDN",
    :icon "http://cdn.tiye.me/logo/cirru.png",
-   :storage-key "favored-edn"})
+   :storage-key "flavored-edn"})

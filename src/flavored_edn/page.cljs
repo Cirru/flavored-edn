@@ -1,12 +1,12 @@
 
-(ns favored-edn.page
+(ns flavored-edn.page
   (:require [respo.render.html :refer [make-string]]
             [shell-page.core :refer [make-page spit slurp]]
-            [favored-edn.comp.container :refer [comp-container]]
-            [favored-edn.schema :as schema]
+            [flavored-edn.comp.container :refer [comp-container]]
+            [flavored-edn.schema :as schema]
             [reel.schema :as reel-schema]
             [cljs.reader :refer [read-string]]
-            [favored-edn.config :as config]
+            [flavored-edn.config :as config]
             [cumulo-util.build :refer [get-ip!]])
   (:require-macros [clojure.core.strint :refer [<<]]))
 
@@ -19,7 +19,7 @@
    (merge
     base-info
     {:styles [(<< "http://~(get-ip!):8100/main.css") "/entry/main.css"],
-     :scripts ["/client.js"],
+     :scripts [{:src "/client.js"}],
      :inline-styles []})))
 
 (defn prod-page []
@@ -33,7 +33,7 @@
      (merge
       base-info
       {:styles [(:release-ui config/site)],
-       :scripts (map #(-> % :output-name prefix-cdn) assets),
+       :scripts (map (fn [x] {:src (-> x :output-name prefix-cdn)}) assets),
        :ssr "respo-ssr",
        :inline-styles [(slurp "./entry/main.css")]}))))
 

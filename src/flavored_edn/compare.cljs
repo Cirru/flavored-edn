@@ -1,8 +1,8 @@
 
-(ns favored-edn.compare
+(ns flavored-edn.compare
   (:require ["fs" :as fs]
             [fipp.edn :refer [pprint]]
-            [favored-edn.core :refer [write-edn]]
+            [flavored-edn.core :refer [write-edn]]
             [cljs.reader :refer [read-string]]))
 
 (defn main! []
