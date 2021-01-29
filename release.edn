@@ -1,6 +1,6 @@
 {:version "0.1.4"
  :group-id "cirru"
- :artifact-id "favored-edn"
+ :artifact-id "flavored-edn"
  :skip-tag true
- :description "EDN formatter in Cirru's favor"
- :scm-url "https://github.com/Cirru/favored-edn"}
+ :description "EDN formatter in Cirru's flavor"
+ :scm-url "https://github.com/Cirru/flavored-edn"}

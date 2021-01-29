@@ -1,5 +1,5 @@
 
-(ns favored-edn.core (:require [clojure.string :as string]))
+(ns flavored-edn.core (:require [clojure.string :as string]))
 
 (declare write-edn)
 

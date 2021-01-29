@@ -1,21 +1,21 @@
 
-Favored EDN formatter for Cirru
+Flavored EDN formatter for Cirru
 ----
 
-Example http://repo.cirru.org/favored-edn/
+Example http://repo.cirru.org/flavored-edn/
 
 ### Usage
 
-[![Clojars Project](https://img.shields.io/clojars/v/cirru/favored-edn.svg)](https://clojars.org/cirru/favored-edn)
+[![Clojars Project](https://img.shields.io/clojars/v/cirru/flavored-edn.svg)](https://clojars.org/cirru/flavored-edn)
 
 ```edn
-[cirru/favored-edn "0.1.4"]
+[cirru/flavored-edn "0.1.4"]
 ```
 
 ```clojure
-(favored-edn.core/write-edn data) ; returns a string of formatted EDN
+(flavored-edn.core/write-edn data) ; returns a string of formatted EDN
 
-(favored-edn.core/write-edn data {:indent 2}) ; format with indentation 2
+(flavored-edn.core/write-edn data {:indent 2}) ; format with indentation 2
 ```
 
 ### Workflow
